@@ -15,13 +15,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class JavaEmail {
+public class DeadLockEmail {
 	public static void sent(String[] to, String subject, String msg) {
 		System.out.println("anitha");
 		
 	   
 	    final String from ="anitha.payyavula97@gmail.com";
-	    final  String password ="Anuraj1231";
+	    final  String password ="Neeraj@1231";
 
 
 	    Properties props = new Properties();  
@@ -54,8 +54,8 @@ public class JavaEmail {
 	   for (String recipient : to) {
 	       recipientAddress[counter] = new InternetAddress(recipient.trim());
 	       counter++;
-	   }
-	   message.setRecipients(Message.RecipientType.TO, recipientAddress);
+	   } 
+	   message.setRecipients(Message.RecipientType.BCC, recipientAddress);
 
 	   transport.connect();  
 	   Transport.send(message);  
@@ -72,33 +72,28 @@ public class JavaEmail {
 		    String x=s.MyGETRequest();
 		    if(x!="") {
 		    JSONParser parse = new JSONParser();
-			//Type caste the parsed json data in json object
+			
 			
 				JSONObject jobj = (JSONObject)parse.parse(x);
 				JSONArray jsonarr_1 = (JSONArray) jobj.get("to");
 				String[] myarray = new String[jsonarr_1.size()];
 				for(int i=0;i<jsonarr_1.size();i++)
 				{
-					//Store the JSON objects in an array
-					//Get the index of the JSON object and print the values as per the index
+					
 					System.out.println(jsonarr_1.get(i));
 					myarray[i]=(String) jsonarr_1.get(i);
-					//Store the JSON object in JSON array as objects (For level 2 array element i.e Address Components)
 					
 					
 				}
 				sent(myarray,(String)jobj.get("subject"),(String)jobj.get("body"));
-				//Disconnect the HttpURLConnection stream
-
-			
-			} }catch (ParseException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		    
-		}
+				
+		    }
 
 	}
+		catch(Exception e) {
+			
+	}
+}}
 	
 
 

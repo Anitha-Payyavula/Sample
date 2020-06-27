@@ -24,7 +24,7 @@ String subject=request.getParameter("subject");
 String msg=request.getParameter("message"); 
           
 try{  
-	JavaEmail x=new JavaEmail();
+	DeadLockEmail x=new DeadLockEmail();
 	x.sent(to,subject,msg);
    
   
